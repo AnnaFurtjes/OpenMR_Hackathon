@@ -536,6 +536,8 @@ ggheatmap
 <br/>
 <br/>
 
+**Closing remark**
+The static website displaying this code was created in Rmarkdown, and the jupyter notebook was created using the `rmd2jupyter()` function provided by the [mkearney/rmd2jupyter package](https://laptrinhx.com/convert-rmd-rmarkdown-to-ipynb-jupyter-notebook-574451390/).
 
 ***
 
