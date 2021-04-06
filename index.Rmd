@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=F,echo=F}
 require(knitr)
-opts_knit$set(root.dir = "C:/Users/k1894405/OneDrive - King's College London/PhD/Projects/HackathonOpenMR/")
+opts_knit$set(root.dir = "C:/Users/k1894405/Documents/GitHub/OpenMR_Hackathon/input")
 ```
 
 ***
@@ -58,6 +58,8 @@ A jupyter notebook:
 
 # Preparations
 <br/>
+
+
 ## Load dependencies
 
 Import the packages providing specialised functions that will make manipulating your data easier or even possible in the first place. These packages must have been previously installed using `install.packages()`. Now, we load them using `library()`.

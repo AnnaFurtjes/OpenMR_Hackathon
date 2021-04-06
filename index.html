@@ -404,8 +404,10 @@ div.tocify {
 </div>
 
 
+<hr />
 <p>Welcome to our data visualisation workshop in R! <br/> This tutorial aims to mirror <a href="https://github.com/OpenMRBenelux/openmr2021-dataviz-workshop">Stijn Denissen’s visualisation workshop</a> in Python using neuroimaging data. Ideas and explanations have been adapted from this tutorial. <br/></p>
 <p>The neuroimaging data used here is part of an open source repository on adult language learners. We express our sincere gratitude to Kshipra Gurunandan, Manuel Carreiras and Pedro M. Paz-Alonso for making this data open source, and thus allowing us to make this tutorial.</p>
+<hr />
 <div id="what-is-a-jupyter-notebook" class="section level1">
 <h1>What is a Jupyter Notebook?</h1>
 <p>A jupyter notebook:</p>
@@ -468,11 +470,11 @@ div.tocify {
 </tr>
 </tbody>
 </table>
+<hr />
 </div>
 <div id="preparations" class="section level1">
 <h1>Preparations</h1>
-<div id="load-dependencies" class="section level2">
-<h2>Load dependencies</h2>
+<p><br/> ## Load dependencies</p>
 <p>Import the packages providing specialised functions that will make manipulating your data easier or even possible in the first place. These packages must have been previously installed using <code>install.packages()</code>. Now, we load them using <code>library()</code>.</p>
 <pre class="r"><code># load package to read and manipulate nifti files
 library(oro.nifti)
@@ -500,7 +502,6 @@ library(ggplot2)
 
 # load package for stat_cor function used in plots
 library(ggpubr)</code></pre>
-</div>
 <div id="origins-of-the-data-we-are-using" class="section level2">
 <h2>Origins of the data we are using</h2>
 <p>Study design:</p>
@@ -922,6 +923,7 @@ ggheatmap&lt;-ggplot(data=df_heatmap, aes(Var1,Var2,fill=value))+
 
 ggheatmap</code></pre>
 <p><img src="index_files/figure-html/heatmap-1.png" width="672" /> <br/> <br/></p>
+<p><strong>Closing remark</strong> The static website displaying this code was created in Rmarkdown, and the jupyter notebook was created using the <code>rmd2jupyter()</code> function provided by the <a href="https://laptrinhx.com/convert-rmd-rmarkdown-to-ipynb-jupyter-notebook-574451390/">mkearney/rmd2jupyter package</a>.</p>
 <hr />
 <p><br/></p>
 <p><strong>Acknowledgements and References</strong> Thanks to Stijn for creating the content of this tutorial!</p>
