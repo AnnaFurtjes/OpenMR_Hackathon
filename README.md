@@ -3,4 +3,4 @@
  <br/>
  Find the static version of this document here: https://annafurtjes.github.io/OpenMR_Hackathon/
  <br/>
- An R/Jypiter notebook interactive tutorial is in the process of being set up.
+ An R/Jupyter notebook interactive tutorial is in the process of being set up.
