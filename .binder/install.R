@@ -1,0 +1,17 @@
+install.packages(
+  "cowplot",
+  "fmri",
+  "GGally",
+  "ggplot2",
+  "ggpubr",
+  "knitr",
+  "oro.nifti",
+  "R.utils",
+  "reshape2",
+  "rjson",
+  "rmarkdown",
+  "stringr",
+  "tableone",
+  "tkrplot",
+  "tractor.base"
+)
