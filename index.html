@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Anna Elisabeth Furtjes" />
+
+
+<title>Hackathon OpenMR</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fas fa-home"></span>
+     
+    Home
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/AnnaFurtjes">
+    <span class="fas fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Hackathon OpenMR</h1>
+<h4 class="author">Anna Elisabeth Furtjes</h4>
+<h4 class="date">24/03/2021</h4>
+
+</div>
+
+
+<hr />
+<p>Welcome to our data visualisation workshop in R! <br/> This tutorial aims to mirror <a href="https://github.com/OpenMRBenelux/openmr2021-dataviz-workshop">Stijn Denissen’s visualisation workshop</a> in Python using neuroimaging data. Ideas and explanations have been adapted from this tutorial. <br/></p>
+<p>The neuroimaging data used here is part of an open source repository on adult language learners. We express our sincere gratitude to Kshipra Gurunandan, Manuel Carreiras and Pedro M. Paz-Alonso for making this data open source, and thus allowing us to make this tutorial.</p>
+<hr />
+<div id="what-is-a-jupyter-notebook" class="section level1">
+<h1>What is a Jupyter Notebook?</h1>
+<p>A jupyter notebook:</p>
+<ul>
+<li><p>is a convenient way to combine code and output with neat documentation, allowing others to easily follow a project that uses code</p></li>
+<li><p>works with so-called “blocks”, which can either be a “code block” or a “markdown block”</p>
+<ul>
+<li>Markdown block: You are reading one right now! It is a block that understands the markdown language, an easy language to create text, similar to HTML and LaTeX.</li>
+<li>Code block: A code block in a jupyter notebook understands the Python language by default. If applicable, output is printed below the code block, such as images and text. You can also change the kernel of code blocks; in this way you can use other programming languages in the code blocks! Read more about this <a href="https://jupyter4edu.github.io/jupyter-edu-book/jupyter.html">here</a>.</li>
+</ul></li>
+<li><p>Allows to cross-reference between cells has some nice shortcuts:</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run a cell</td>
+<td>shift + enter / ctrl + enter</td>
+</tr>
+<tr class="even">
+<td>Add cell above</td>
+<td>“a” (first click left of the cell)</td>
+</tr>
+<tr class="odd">
+<td>Add cell below</td>
+<td>“b” (first click left of the cell)</td>
+</tr>
+<tr class="even">
+<td>Copy cell:</td>
+<td>“c” (first click left of the cell)</td>
+</tr>
+<tr class="odd">
+<td>Cut cell:</td>
+<td>“x” (first click left of the cell)</td>
+</tr>
+<tr class="even">
+<td>Paste cell</td>
+<td>“v” (first click left of the cell)</td>
+</tr>
+<tr class="odd">
+<td>Delete cell</td>
+<td>“dd” (first click left of the cell)</td>
+</tr>
+<tr class="even">
+<td>Comment out code</td>
+<td>select code and press ctrl + / or cmd + /</td>
+</tr>
+<tr class="odd">
+<td>Uncomment code</td>
+<td>select code and press ctrl + / or cmd + /</td>
+</tr>
+<tr class="even">
+<td>Help and documentation</td>
+<td>type <code>?</code> or <code>help()</code> in a code cell</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="preparations" class="section level1">
+<h1>Preparations</h1>
+<p><br/> ## Load dependencies</p>
+<p>Import the packages providing specialised functions that will make manipulating your data easier or even possible in the first place. These packages must have been previously installed using <code>install.packages()</code>. Now, we load them using <code>library()</code>.</p>
+<pre class="r"><code># load package to read and manipulate nifti files
+library(oro.nifti)
+
+# load tractor.package specialised on visualising anatomical images
+library(tractor.base)
+
+# load package specialised on fmri visualisation
+#Polzehl, J. and Tabelow, K. (2007) fmri: A Package for Analyzing fmri Data, R News, 7:13-17 .
+library(fmri)
+# required for three-dimensional plotting of fmri data
+library(tkrplot) 
+
+# load data cleaning package
+library(stringr)
+
+# load package to read .json file
+library(rjson)
+
+# load data display package
+library(tableone)
+
+# load data visualisation package
+library(ggplot2)
+
+# load package for stat_cor function used in plots
+library(ggpubr)</code></pre>
+<div id="origins-of-the-data-we-are-using" class="section level2">
+<h2>Origins of the data we are using</h2>
+<p>Study design:</p>
+<p>34 adult language learners aged 20-70 were recruited from a language school. Subjects were at either intermediate or advanced levels of learning the same second language. Subjects performed semantic comprehension (reading and speech) and verbal production tasks in the MRI scanner in their native and new languages.</p>
+<hr />
+</div>
+</div>
+<div id="anatomical-mri-images" class="section level1">
+<h1>1. Anatomical MRI images</h1>
+<p>The data was downloaded from OpenNeuro, <a href="https://openneuro.org/datasets/ds003542/versions/1.0.0">project ds003542</a>, which originates from a study on language learners. For the neuro-imaging data part, we only extracted data from subject 1. Hence, the data is present in the “inputs/ds00352” folder, subdirectory “sub-01”:</p>
+<ul>
+<li>Anatomical MRI: “anat” subfolder</li>
+<li>Functional MRI: “func” subfolder</li>
+</ul>
+<div id="the-brain-imaging-data-structure-bids-data-organisation" class="section level2">
+<h2>1.1 The <strong>Brain Imaging Data Structure</strong> (BIDS) data organisation</h2>
+<p>To unify neuroimaging studies, the BIDS data organisation is a popular approach to organise your data in a reproducible way. Find out more <a href="https://bids.neuroimaging.io/">here</a>.</p>
+<p>Briefly, BIDS aims to unify neuro-imaging (meta)data organisation and sharing; essentially speaking the same language when it comes to neuro-imaging data.</p>
+</div>
+<div id="what-is-a-nifti-.nii" class="section level2">
+<h2>1.2 What is a NIfTI (.nii)?</h2>
+<p>Most neuroimages are saved in a <em>NIfTI</em> file. NIfTI is a nice informatic tool for neuro-imaging data, and easy to work with. For a thorough explanation on the origin and objective of NIfTI, we refer to this <a href="https://nifti.nimh.nih.gov/">webpage</a>.</p>
+</div>
+<div id="visualising-anatomical-mri-images" class="section level2">
+<h2>1.3 Visualising anatomical MRI images</h2>
+<p>Nifti files with a .gz extension need to be unzipped so R can read them in. We do this using the R.utils package which provides the <code>gunzip()</code> function.</p>
+<ol style="list-style-type: decimal">
+<li><p>First, we load the package using the <code>library()</code> function.</p></li>
+<li><p>Set the working directory using <code>setwd()</code> to where your anatomical nifi file is saved.</p></li>
+<li><p>Use the <code>gunzip()</code> function to unzip the file.</p></li>
+</ol>
+<pre class="r"><code># load the R.utils package
+library(R.utils)
+# set the working directory
+setwd(paste0(temporarywd,&quot;/ub-01/anat&quot;))
+# unzip anatomical file
+gunzip(&quot;sub-01_anat_sub-01_T1w.nii.gz&quot;)</code></pre>
+<p>There are many packages in R designed to manipulate nifti images in R. A popular one is the oro.nifti package. This tutorial does not even scratch the surface of what this package can do and we recommend checking out the <a href="https://www.rdocumentation.org/packages/oro.nifti/versions/0.11.0">documentation</a>.</p>
+<p>Here, we will use the package to display the brain scan of our subject. We don’t have to load the library of functions because we have already done this above in the <em>Preparations</em>.</p>
+<ol style="list-style-type: decimal">
+<li>Set your working directory and read in the image using the <code>readNIfTI()</code> function.</li>
+<li>Calibrate the image using the <code>cal_img()</code> function</li>
+<li>Display the data structure of your nifti file using the <code>print()</code> function.</li>
+</ol>
+<pre class="r"><code>temporarywd &lt;- getwd()
+setwd(paste0(temporarywd,&quot;/ub-01/anat&quot;))
+
+# read nifti file
+anat_img &lt;- readNIfTI(&quot;sub-01_anat_sub-01_T1w.nii&quot;)
+
+# Set Max/Min for nifti object by range of data to get right format
+anat_img = cal_img(anat_img)
+
+# see information about nifti header
+print(anat_img)</code></pre>
+<pre><code>## NIfTI-1 format
+##   Type            : nifti
+##   Data Type       : 4 (INT16)
+##   Bits per Pixel  : 16
+##   Slice Code      : 0 (Unknown)
+##   Intent Code     : 0 (None)
+##   Qform Code      : 1 (Scanner_Anat)
+##   Sform Code      : 1 (Scanner_Anat)
+##   Dimension       : 176 x 256 x 256
+##   Pixel Dimension : 1 x 1 x 1
+##   Voxel Units     : mm
+##   Time Units      : sec</code></pre>
+<p>Let’s use two functions in the oro.nifti package es has two functions for displaying the brain image:</p>
+<ol style="list-style-type: decimal">
+<li>The <code>image()</code> function displays all the axial brain slices saved in the nifti image.</li>
+<li>The <code>orthographic()</code> function allows you to display your image from mid-axial, mid-sagittal and mid-coronal perspectives.</li>
+</ol>
+<pre class="r"><code># prints loads of brains on a black background
+image(anat_img) </code></pre>
+<p><img src="index_files/figure-html/visual_oro.nifti-1.png" width="672" /></p>
+<pre class="r"><code># mid-axial, mid-sagittal, mid-coronal views
+orthographic(anat_img) </code></pre>
+<p><img src="index_files/figure-html/visual_oro.nifti-2.png" width="672" /></p>
+<p>The tractor.base package is another popular package for neuro-visualisation in R. It can read and write popular file formats, perform interactive and non-interactive visualisation, flexible image manipulation, metadata and sparse image handling. Find out more <a href="http://www.tractor-mri.org.uk/">here</a>. <br/></p>
+<p>We are going to use this package to simply display the brain image from an axial, sagittal and coronal perspective. Like with the oro.nifti package, there is no need to load the library, because we have already done this in the <em>Preparations</em>.</p>
+<p><br/> Use the <code>createSliceGraphic()</code> function to display the brain image. By specifying the x (sagittal view), y (coronal view), and z (axial view) argument, you can choose the slide you would like to be displayed. Here, we display the 100th slice in the sagittal view, and the 150th slide in the coronal and axial views. We choose for the image to be disolayed on the default graphics device using the <code>device = "internal"</code> argument.</p>
+<pre class="r"><code>createSliceGraphic(anat_img,x=100, device=&quot;internal&quot;)</code></pre>
+<pre><code>## Output level is not set; defaulting to &quot;Info&quot;</code></pre>
+<p><img src="index_files/figure-html/tractor_slices-1.png" width="672" /></p>
+<pre class="r"><code>createSliceGraphic(anat_img,y=150, device=&quot;internal&quot;)</code></pre>
+<p><img src="index_files/figure-html/tractor_slices-2.png" width="672" /></p>
+<pre class="r"><code>createSliceGraphic(anat_img,z=150, device=&quot;internal&quot;)</code></pre>
+<p><img src="index_files/figure-html/tractor_slices-3.png" width="672" /></p>
+<p>Tractor.base also provides an equivalent function to the <code>orthographic()</code> in oro.nifti, which displays all slices saved in the nifti file. It’s the <code>createContactSheetGraphic()</code> function for which you can choose whether to get an axial, coronal or sagittal view using the <code>axis</code> argument. Let’s go ahead and create a sagittal (<code>axis = 1</code>) contact sheet.</p>
+<pre class="r"><code>createContactSheetGraphic(anat_img,axis=1,device=&quot;internal&quot;)</code></pre>
+<p><img src="index_files/figure-html/tractor_sheet-1.png" width="672" /> ***</p>
+</div>
+</div>
+<div id="functional-mri" class="section level1">
+<h1>2. Functional MRI</h1>
+<p>Compared with an anatomical MRI image, a functional MRI image has a fourth dimension: time! There is specialised package in R called fmri which allows you to plot easily plot functional neuroimaging data using the <code>plot.fmridata()</code> function. There is no need to load the fmri package (and the tkrplot package which is needed for the plot fuction) because both already have been loaded in the preparations.</p>
+<ol style="list-style-type: decimal">
+<li>First, we set the working directory to where the functional image is saved.</li>
+<li>Second, we read in the file using the <code>read.NIFTI()</code> function provided by the fmri package.</li>
+<li>Finally, we use the <code>plot.fmridata()</code> function to plot the data. It will bring up an interactive window in which you can explore your image, and get a 3D representation of how your BOLD signal changed over time.</li>
+</ol>
+<pre class="r"><code>temporarywd&lt;-getwd()
+setwd(paste0(temporarywd,&quot;/ub-01/func&quot;))
+func_img&lt;-read.NIFTI(&quot;sub-01_func_sub-01_task-compL1_run-1_bold.nii&quot;,level=0.75)
+
+
+# this function brings up an interactive window to explore the fmri image
+plot.fmridata(func_img, anatomic = F, maxpvalue = 0.05,
+              spm = TRUE, pos = c(100, 150, 150), type = &quot;slice&quot;,
+              slice =  1, view = &quot;axial&quot; ,zlim.u =
+              NULL, zlim.o = NULL,col.o = c(rainbow( 64, start = 2/6, end = 4/6)), col.u =
+              grey(0:255/255), cutOff = c(0, 1))</code></pre>
+<pre><code>## [1] &quot;Creating sagittal slices ...&quot;</code></pre>
+<pre><code>## [1] &quot;Creating axial slices ...&quot;</code></pre>
+<pre><code>## [1] &quot;Creating coronal slices ...&quot;</code></pre>
+<div id="additional-neuro-imaging-packages" class="section level2">
+<h2>Additional neuro-imaging packages</h2>
+<p>There are many R packages designed to manipulate and visualise brain images in R and this tutorial is not exhaustive in any way. ***</p>
+</div>
+</div>
+<div id="visualisation-on-a-dataframe" class="section level1">
+<h1>3. Visualisation on a dataframe</h1>
+<p>The following files were downloaded for this chapter from <a href="https://openneuro.org/datasets/ds003542/versions/1.0.0" class="uri">https://openneuro.org/datasets/ds003542/versions/1.0.0</a></p>
+<ul>
+<li><p>data: participants.tsv</p></li>
+<li><p>description: participants.json</p></li>
+</ul>
+<pre class="r"><code># read in downloaded data 
+df &lt;- read.table(&quot;participants.tsv&quot;, sep=&quot;\t&quot;, header=T)
+
+# remove space after M &amp; F in sex column
+df$sex &lt;- str_remove(string = df$sex, pattern = &quot; &quot;)
+
+# check that it worked by comparing the number of rows in the dataset with the number of entries that are either male or female (using the right string pattern)
+nrow(df) == sum(df$sex == &quot;M&quot; | df$sex == &quot;F&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># Note that some numeric columns are considered as characters when you check out the data structure
+str(df)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    34 obs. of  6 variables:
+##  $ participant_id: chr  &quot;sub-01&quot; &quot;sub-02&quot; &quot;sub-03&quot; &quot;sub-04&quot; ...
+##  $ age           : int  30 46 57 20 43 43 35 56 50 52 ...
+##  $ sex           : chr  &quot;M&quot; &quot;F&quot; &quot;M&quot; &quot;F&quot; ...
+##  $ group         : chr  &quot;advanced&quot; &quot;advanced&quot; &quot;advanced&quot; &quot;advanced&quot; ...
+##  $ L1            : chr  &quot;99&quot; &quot;100&quot; &quot;100&quot; &quot;100&quot; ...
+##  $ Ln            : chr  &quot;71&quot; &quot;81&quot; &quot;95&quot; &quot;92&quot; ...</code></pre>
+<pre class="r"><code># transform columns L1 and Ln so they are numeric
+df$L1&lt;-as.numeric(df$L1)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre class="r"><code>df$Ln&lt;-as.numeric(df$Ln)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre class="r"><code># the warning message indicates that the entries include missing values, which are now labeled NA</code></pre>
+<p>The warning message is safe to ignore. It indicates that the entries include missing values, which are now labeled <code>NA</code>.</p>
+<pre class="r"><code># read description file
+description &lt;- fromJSON(file = &quot;participants.json&quot;)</code></pre>
+<p>We are going to add some synthetic data. We will calculate whole brain and gray matter volumes, for which we will use the following equations (calculated on segmented open source healthy control data):</p>
+<p><span class="math display">\[
+  (\operatorname{Whole Brain)} = 1696.06 - 3.34 * (\operatorname{Age)} 
+\]</span></p>
+<p><span class="math display">\[
+  (\operatorname{GrayMatter)} = 1041.07 - 2.84 * (\operatorname{Age)} 
+\]</span></p>
+<p>In addition, we will simulate noise drawn from a normal distribution and add it to the variables.</p>
+<p>This operation is straightforward in R:</p>
+<ul>
+<li><p>Simulate noise using the <code>rnorm()</code> function</p></li>
+<li><p>Calculate the new variables <code>whole brain</code> and <code>gray matter</code> as a function of age + the noise</p></li>
+</ul>
+<pre class="r"><code># create noise from a normal distribution to add to the newly create variable
+set.seed(12)
+noise&lt;-rnorm(nrow(df), mean = 0, sd = 20)
+
+# apply calculation for whole brain 
+df$whole_brain &lt;- (1696.06 - (3.34*df$age)) + noise
+
+# regenerate noise
+set.seed(34)
+noise&lt;-rnorm(nrow(df), mean = 0, sd = 18)
+
+# apply calculation for gray matter
+df$gray_matter &lt;- (1041.07 - (2.84 * df$age)) + noise</code></pre>
+<div id="explore-the-dataframes-quantitatively" class="section level2">
+<h2>3.1 Explore the dataframes quantitatively</h2>
+<p>Explore the dataframe <code>df</code> by creating tables and data summaries:</p>
+<p>You might find the following functions helpful: <code>head()</code>, <code>summary()</code>, <code>table()</code>, <code>CreateTableOne()</code></p>
+<pre class="r"><code># show head() of the df
+head(df)</code></pre>
+<pre><code>##   participant_id age sex    group  L1 Ln whole_brain gray_matter
+## 1         sub-01  30   M advanced  99 71    1566.249    953.3700
+## 2         sub-02  46   F advanced 100 81    1573.963    932.0266
+## 3         sub-03  57   M advanced 100 95    1486.545    865.7310
+## 4         sub-04  20   F advanced 100 92    1610.860    973.9155
+## 5         sub-05  43   F advanced  97 70    1512.487    914.2055
+## 6         sub-06  43   F advanced 100 99    1546.994    910.7511</code></pre>
+<pre class="r"><code># describe the data using summary which we use for continuous variables
+summary(df[,c(&quot;age&quot;,&quot;whole_brain&quot;,&quot;gray_matter&quot;,&quot;L1&quot;,&quot;Ln&quot;)])</code></pre>
+<pre><code>##       age        whole_brain    gray_matter          L1               Ln       
+##  Min.   :20.0   Min.   :1479   Min.   :849.3   Min.   : 94.00   Min.   :31.00  
+##  1st Qu.:37.5   1st Qu.:1528   1st Qu.:889.1   1st Qu.:100.00   1st Qu.:51.00  
+##  Median :45.0   Median :1545   Median :914.1   Median :100.00   Median :71.00  
+##  Mean   :44.5   Mean   :1545   Mean   :914.0   Mean   : 99.57   Mean   :70.21  
+##  3rd Qu.:51.5   3rd Qu.:1566   3rd Qu.:936.2   3rd Qu.:100.00   3rd Qu.:94.00  
+##  Max.   :66.0   Max.   :1611   Max.   :976.9   Max.   :100.00   Max.   :99.00  
+##                                                NA&#39;s   :4        NA&#39;s   :5</code></pre>
+<pre class="r"><code># print tables for binary variables
+table(df$sex)</code></pre>
+<pre><code>## 
+##  F  M 
+## 19 15</code></pre>
+<pre class="r"><code>table(df$group)</code></pre>
+<pre><code>## 
+## advanced    basic 
+##       16       18</code></pre>
+<pre class="r"><code># show tables for binary variables using tableone package (which is a bit nicer)
+CreateTableOne(vars = c(&quot;sex&quot;,&quot;group&quot;), data = df)</code></pre>
+<pre><code>##                    
+##                     Overall   
+##   n                 34        
+##   sex = M (%)       15 (44.1) 
+##   group = basic (%) 18 (52.9)</code></pre>
+<p>Display the description file you read in using <code>print()</code></p>
+<pre class="r"><code># print description using the str() function which displays the structure of the object
+print(str(description))</code></pre>
+<pre><code>## List of 5
+##  $ age  :List of 2
+##   ..$ Description: chr &quot;age of the participant&quot;
+##   ..$ Units      : chr &quot;years&quot;
+##  $ sex  :List of 2
+##   ..$ Description: chr &quot;sex of the participant as reported by the participant&quot;
+##   ..$ Levels     :List of 2
+##   .. ..$ F: chr &quot;female&quot;
+##   .. ..$ M: chr &quot;male&quot;
+##  $ group:List of 3
+##   ..$ Description: chr &quot;language proficiency group the participant belonged to&quot;
+##   ..$ TermURL    : chr &quot;https://tinyurl.com/5kxholdv&quot;
+##   ..$ Levels     :List of 2
+##   .. ..$ Basic   : chr &quot;participants in Basque classes corresponding to a CEFR A2 level&quot;
+##   .. ..$ Advanced: chr &quot;participants in Basque classes corresponding to a CEFR C2 level&quot;
+##  $ L1   :List of 2
+##   ..$ Description: chr &quot;Peformance on adapted Boston Naming Test in subject&#39;s native language (Spanish)&quot;
+##   ..$ Units      : chr &quot;percent accuracy&quot;
+##  $ Ln   :List of 2
+##   ..$ Description: chr &quot;Peformance on adapted Boston Naming Test in subject&#39;s new language (Basque)&quot;
+##   ..$ Units      : chr &quot;percent accuracy&quot;
+## NULL</code></pre>
+</div>
+<div id="basic-visualisation-with-ggplot2" class="section level2">
+<h2>3.2 Basic visualisation with ggplot2</h2>
+<p>ggplot is the most popular data visualisation tool in R and it is very flexible. There are loads of great websites explaining the rationale behind ggplots like <a href="https://ggplot2-book.org/index.html">this one</a> for example.</p>
+<p>Plot the distribution of the age column with a histogram using the following input:</p>
+<ul>
+<li><p>Initiate a ggplot <code>ggplot()</code> for which you specify the data <code>data = df</code> and the column of interest to be plotted <code>aes(age)</code> (aes stands for aesthetics that appear in your plot)</p></li>
+<li><p>Indicate that you want a histogram <code>geom_histogram</code> and add specifications of what the histogram is supposed to look like.</p></li>
+<li><p>If you would like specific colours, you can find them <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a></p></li>
+<li><p>Name x and y axes with <code>xlab</code> and <code>ylab</code></p></li>
+<li><p>Chose a theme to make it look more pretty <code>theme_bw</code></p></li>
+</ul>
+<pre class="r"><code>age_plot&lt;-    ggplot(data = df, aes(age))+
+                geom_histogram(binwidth = 5, fill = &quot;bisque2&quot;, col = &quot;black&quot;)+
+                xlab(&quot;Age in bins of 5&quot;)+
+                ylab(&quot;Count&quot;)+
+                theme_bw()
+
+age_plot</code></pre>
+<p><img src="index_files/figure-html/age_histogram-1.png" width="672" /></p>
+<p><br> <br></p>
+<p>Next, we will plot the same histogram and stratify it by sex. We use the same code as above, but add one line <code>facet_grid(~Sex)</code> to achieve the distinction between male and female.</p>
+<pre class="r"><code># create a new variable that spells out sex
+df$Sex&lt;-ifelse(df$sex == &quot;M&quot;, &quot;Male&quot;, &quot;Female&quot;)
+
+# re-run the same code with facet_grid
+age_sex_plot&lt;-    ggplot(data = df, aes(age))+
+                geom_histogram(aes(fill= Sex), binwidth = 5, col = &quot;black&quot;)+
+                xlab(&quot;Age in bins of 5&quot;)+
+                ylab(&quot;Count&quot;)+
+                theme_bw()+ 
+                facet_grid(~Sex)
+
+age_sex_plot</code></pre>
+<p><img src="index_files/figure-html/by_sex-1.png" width="672" /> <br> <br></p>
+<p>Use the same code and explore how the plots change when you change the number of bins!</p>
+<pre class="r"><code>bins&lt;-seq(from = 3, to = 10, by = 3)
+
+# re-run the same code with different bins 
+for(i in bins){
+  # define name for your plot to be saved under
+  plot_name &lt;- paste0(&quot;plot_bins&quot;,i)
+  
+  # create the plot with i as the number of bins
+  plot &lt;- ggplot(data = df, aes(age))+
+                geom_histogram(aes(fill= Sex), binwidth = i, col = &quot;black&quot;)+
+                xlab(paste0(&quot;Age in bins of &quot;,i))+
+                ylab(&quot;Count&quot;)+
+                theme_bw()+ 
+                facet_grid(~Sex)
+  
+  # assign your plot name to the plot
+  assign(plot_name,plot)
+}
+
+# display the plots created
+plot_bins3</code></pre>
+<p><img src="index_files/figure-html/by_sex_bins-1.png" width="672" /></p>
+<pre class="r"><code>plot_bins6</code></pre>
+<p><img src="index_files/figure-html/by_sex_bins-2.png" width="672" /></p>
+<pre class="r"><code>plot_bins9</code></pre>
+<p><img src="index_files/figure-html/by_sex_bins-3.png" width="672" /></p>
+<p><br> <br></p>
+<p>Let’s integrate what we have learned! Can you make the following two plots: <br></p>
+<ol style="list-style-type: decimal">
+<li><p>Display the distribution of the <code>whole_brain</code> column using the ggplot argument <code>geom_density()</code>.</p></li>
+<li><p>Display the relationship between <code>age</code> and <code>whole_brain</code> in a scatterplot using <code>geom_point()</code>.</p></li>
+<li><p>The plots should be coloured in red.</p></li>
+<li><p>They should be combined so that they sit on top of each other.</p></li>
+</ol>
+<p>HINT: If you are not working with stratified data, <code>cowplot</code> is a nice package to combine multiple plots in figure. First, you create your plots and save them to your workspace. Second, you use the function <code>plot_grind()</code> to arrange your plots.</p>
+<pre class="r"><code># create density plot for the whole brain measure
+whole_brain_density&lt;-
+ggplot(data = df, aes(whole_brain))+
+          geom_density(col=&quot;red3&quot;, size = 2)+
+          xlab(&quot;Whole brain&quot;)+
+          ylab(&quot;Density&quot;)+
+          theme_bw()
+  
+# create a scatterplot that contrasts age and whole_brain
+age_whole_brain&lt;-
+  ggplot(data = df, aes(x = age, y = whole_brain))+
+  geom_point(col = &quot;red3&quot;, size = 1.5)+
+  xlab(&quot;Age&quot;)+
+  ylab(&quot;Whole Brain&quot;)+
+  theme_bw()+
+  geom_smooth(aes(x = age, y = whole_brain, col = &quot;red&quot;),method = lm, se = TRUE)+
+  theme(legend.position = &quot;none&quot;)+
+  stat_cor(method=&quot;pearson&quot;,cor.coef.name=&quot;r&quot;,size=4.5,position = &quot;identity&quot;, label.x.npc = 0.65)
+
+library(cowplot)
+
+plot_grid(whole_brain_density, age_whole_brain, nrow = 2, ncol = 1, labels = c(&quot;A&quot;,&quot;B&quot;))</code></pre>
+<p><img src="index_files/figure-html/whole_brain-1.png" width="672" /></p>
+</div>
+<div id="looping-with-ggplot" class="section level2">
+<h2>Looping with ggplot</h2>
+<p>Sometimes, you might like to create plots that are very similar in that they take the same ggplot arguments, but they use different input variables. Instead of re-writing the code every time, you can using a <code>for</code> loop to do the work for you. However, you must set up a data structure for this to work. We will see how this is done, by aiming to plot all possible combinations of <code>age</code>, <code>whole_brain</code> and <code>Ln</code>.</p>
+<ul>
+<li><p>Create a <code>list()</code> that contains all the possible combinations between the three variables.</p></li>
+<li><p>Loop over this list, using the stored variable names and inputs in your ggplot.</p></li>
+<li><p>Save the output of the loop in another list, and pass the list to <code>plot_grid()</code> to display all the plots simultaneously.</p></li>
+</ul>
+<p><em>This certainly seems to be less straightforward than it is in Python</em></p>
+<pre class="r"><code># build a list containing possible combinations of age, whole_brain, and Ln
+var_list&lt;-vector(mode = &quot;list&quot;, length = 9)
+trait1&lt;-c(&quot;age&quot;, &quot;whole_brain&quot;,&quot;Ln&quot;)
+trait2&lt;-c(&quot;age&quot;, &quot;whole_brain&quot;,&quot;Ln&quot;)
+
+k &lt;- 0
+while(k&lt;9)
+for(i in trait1){
+  for(j in trait2){ 
+    k &lt;- k+1
+    var_list[[k]][1]&lt;-i
+    var_list[[k]][2]&lt;-j
+  }
+}
+
+
+
+# make list in which to save the plots
+plot_list = list()
+for(i in 1:length(var_list)){
+  rm(plot)
+  plot&lt;-ggplot(data = df)+
+          geom_point(aes_string(x = var_list[[i]][1], y = var_list[[i]][2]), col = &quot;blue&quot;, size = 1.5)+
+          geom_smooth(aes_string(x = var_list[[i]][1], y = var_list[[i]][2]),method = lm, se = TRUE)+
+          theme(legend.position = &quot;none&quot;)+
+          theme_bw()+
+          xlab(var_list[[i]][1])+
+          ylab(var_list[[i]][2])
+  plot_list[[i]]&lt;-plot
+}
+
+
+plot_grid(plotlist=plot_list)</code></pre>
+<p><img src="index_files/figure-html/plot_iteration-1.png" width="672" /> <br> <em>You will get warnings because the dataframe contains missing data, it’s nothing to worry about.</em></p>
+</div>
+<div id="pairplots" class="section level2">
+<h2>Pairplots</h2>
+<p>You may have noticed that creating the multiple plots above was not straightforward and the diagonal figures are not particularly useful. So called “pairplots” aim to maximise the information and replace the diagonals by density distributions. To save you the work, fellow R programmers have created a function in the <code>GGally</code> package that creates pairplots for you in one line of code! <br></p>
+<p>Explore the <code>ggpairs</code> function and attempt to stratify the plot by sex using the <code>mapping</code> argument!</p>
+<pre class="r"><code>library(GGally)
+
+ggpairs(df, columns = c(&quot;age&quot;,&quot;whole_brain&quot;,&quot;Ln&quot;), mapping = aes(color=Sex), columnLabels = c(&quot;Age&quot;,&quot;Whole brain&quot;,&quot;Ln&quot;))</code></pre>
+<p><img src="index_files/figure-html/pairplot-1.png" width="672" /></p>
+</div>
+<div id="heatmaps" class="section level2">
+<h2>Heatmaps</h2>
+<p>Heatmaps are a popular choice for data visualisation when pairplots, for example, would become too big and busy. A heatmap is a n-by-n matrix which colour codes the correlations found between your variables of interest. To create a heatmap, you will have to calculate a correlation matrix using <code>cor()</code>, and if you use the <code>heatmap()</code> function in R, the job is done in one line.</p>
+<pre class="r"><code># heatmap in ggplot
+df_matrix&lt;-cor(df[c(&quot;age&quot;,&quot;L1&quot;,&quot;Ln&quot;,&quot;whole_brain&quot;,&quot;gray_matter&quot;)],df[c(&quot;age&quot;,&quot;L1&quot;,&quot;Ln&quot;,&quot;whole_brain&quot;,&quot;gray_matter&quot;)], use = &quot;complete.obs&quot;)
+
+heatmap(df_matrix)</code></pre>
+<p><img src="index_files/figure-html/easy_heatmap-1.png" width="672" /></p>
+<p>However, you might want to change the look of your heatmap. Using ggplot gives you that flexibility. Why don’t you try to use what you have learned, and apply it to a ggplot with the <code>geom_tile</code> argument?</p>
+<pre class="r"><code># do it in ggplot
+get_lower_tri&lt;-function(cormatrix){
+    cormatrix[upper.tri(cormatrix)] &lt;- NA
+    return(cormatrix)
+  }
+
+df_heatmap&lt;-get_lower_tri(df_matrix)
+df_heatmap&lt;-reshape2::melt(df_heatmap)
+
+ggheatmap&lt;-ggplot(data=df_heatmap, aes(Var1,Var2,fill=value))+
+  geom_tile()+
+  theme_minimal()+
+  scale_fill_gradient2(low=&quot;gold4&quot;,high=&quot;darkorange3&quot;,mid =&quot;gold&quot;,
+                         midpoint=0,limit=c(-1,1),na.value=&quot;white&quot;,name=&quot;Correlations&quot;)+
+  coord_fixed()+
+  xlab(&quot;&quot;)+
+  ylab(&quot;&quot;)
+
+ggheatmap</code></pre>
+<p><img src="index_files/figure-html/heatmap-1.png" width="672" /> <br/> <br/></p>
+<p><strong>Closing remark</strong> The static website displaying this code was created in Rmarkdown, and the jupyter notebook was created using the <code>rmd2jupyter()</code> function provided by the <a href="https://laptrinhx.com/convert-rmd-rmarkdown-to-ipynb-jupyter-notebook-574451390/">mkearney/rmd2jupyter package</a>.</p>
+<hr />
+<p><br/></p>
+<p><strong>Acknowledgements and References</strong> Thanks to Stijn for creating the content of this tutorial!</p>
+<p>We express our sincere gratitude to Kshipra Gurunandan, Manuel Carreiras and Pedro M. Paz-Alonso for making this data open source, and thus allowing us to make this tutorial. The citation, references and contact details can be found below:</p>
+<p><strong>Dataset Citation</strong> Kshipra Gurunandan and Manuel Carreiras and Pedro M. Paz-Alonso (2021). Adult language learners. OpenNeuro. [Dataset] doi: 10.18112/openneuro.ds003542.v1.0.0</p>
+<p><br/></p>
+<p><strong>Publications using this dataset:</strong></p>
+<p>[1] Gurunandan, K., Carreiras, M., &amp; Paz-Alonso, P.M. (2019). Functional plasticity associated with language learning in adults. NeuroImage, 201. <a href="Doi:10.1016/j.neuroimage.2019.116040" class="uri">Doi:10.1016/j.neuroimage.2019.116040</a> - Data: comprehension task from this dataset. - Summary: In this work, we examined different dimensions of learning-dependent plasticity of reading and speech comprehension in intermediate and advanced adult language learners, i.e. after the initial effort of adult second language learning, do language networks continue to change with increasing proficiency?</p>
+<p>[2] Gurunandan, K., Arnaez-Telleria, J., Carreiras, M., &amp; Paz-Alonso, P.M. (2020). Converging evidence for differential specialization and plasticity of language systems. Journal of Neuroscience, 40(50), 9715-9724. <a href="Doi:10.1523/JNEUROSCI.0851-20.2020" class="uri">Doi:10.1523/JNEUROSCI.0851-20.2020</a> - Data: comprehension and production tasks from this dataset + comprehension and production tasks from a longitudinal dataset (available at [add link]). - Summary: In this work, we put together cross-sectional and longitudinal studies in a comprehensive examination of the flexibility of lateralisation, i.e. is hemispheric lateralisation of language processing fixed in early childhood or can it change with later language learning?</p>
+<p>Contact information of owners of the datasets</p>
+<p>For any questions to the authors that made this dataset open-access to everyone:</p>
+<ul>
+<li><p>Kshipra Gurunandan <a href="mailto:k.gurunandan@bcbl.eu" class="email">k.gurunandan@bcbl.eu</a></p></li>
+<li><p>Pedro M. Paz-Alonso <a href="mailto:p.pazalonso@bcbl.eu" class="email">p.pazalonso@bcbl.eu</a></p></li>
+</ul>
+</div>
+</div>
+
+&nbsp;
+<hr />
+<a href = "https://www.kcl.ac.uk/">
+<p style="text-align: center"><img src="KCL_logo.jpg" href="https://www.kcl.ac.uk/" style="width:70px;height:50px"> 
+</a>
+</p>
+
+<a href = "https://www.kcl.ac.uk/people/anna-furtjes">
+<p style="text-align: center;">Work by Anna Elisabeth Fürtjes</a></p>
+<p style="text-align: center;"><span style="color: #808080;"><em>anna.furtjes@kcl.ac.uk</em></span></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://twitter.com/Anna_Furtjes" class="fa fa-twitter"></a>
+</p>
+
+&nbsp;
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
