@@ -1,5 +1,5 @@
 install.packages(
-  "devtools",
+  c("devtools",
   "cowplot",
   "fmri",
   "GGally",
@@ -14,5 +14,5 @@ install.packages(
   "stringr",
   "tableone",
   "tkrplot",
-  "tractor.base"
+  "tractor.base")
 )
