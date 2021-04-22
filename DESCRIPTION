@@ -1,0 +1,29 @@
+Type: Compendium
+Package: OpenMR_Hackathon
+Title: OpenMR data visualisation
+Version: 0.0.1
+Authors@R: 
+    person(given = "Anna Elisabeth",
+           family = "Furtjes",
+           role = c("aut", "cre"),
+           email = "anna.furtjes@kcl.ac.uk")
+Description: Attempt to make this an interactive and reproducible project
+License: None
+Depends: 
+    cowplot,
+    fmri,
+    GGally,
+    ggplot2,
+    ggpubr,
+    knitr,
+    oro.nifti,
+    R.utils,
+    reshape2,
+    rjson,
+    rmarkdown,
+    stringr,
+    tableone,
+    tkrplot,
+    tractor.base
+Encoding: UTF-8
+LazyData: true
