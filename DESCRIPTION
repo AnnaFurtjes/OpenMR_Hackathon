@@ -1,6 +1,6 @@
 Type: Compendium
 Package: OpenMR_Hackathon
-Title: OpenMR data visualisation
+Title: MRI data visualisation
 Version: 0.0.1
 Authors@R: 
     person(given = "Anna Elisabeth",
