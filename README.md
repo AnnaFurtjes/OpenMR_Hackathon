@@ -6,5 +6,5 @@
  An R/Jupyter notebook interactive tutorial is in the process of being set up.
 <br/>
   <!-- badges: start -->
-  [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AnnaFurtjes/OpenMR_Hackathon/main?urlpath=rstudio)
+  [![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AnnaFurtjes/OpenMR_Hackathon/.binder/main?urlpath=rstudio)
   <!-- badges: end -->
